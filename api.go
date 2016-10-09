@@ -8,7 +8,8 @@ import (
 
 func main() {
 	iris.Get("/hi", func(ctx *iris.Context) {
-		ctx.Write("Hello world %s", "iris")
+		ctx.SetCookieKV("name", "iris")
+		ctx.Write("Hello world %s", ctx.GetCookie("name"))
 	})
 	fmt.Println("Start Service....")
 	iris.Listen(":8080")
